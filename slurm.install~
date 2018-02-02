@@ -1,0 +1,3 @@
+sudo yum install epel-release
+sudo yum install munge munge-libs munge-devel -y
+sudo yum yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad -y

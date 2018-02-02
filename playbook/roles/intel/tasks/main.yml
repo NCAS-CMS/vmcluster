@@ -1,0 +1,12 @@
+---
+# Install ifort
+
+ - name: Install ifort
+   unarchive:
+     src: intel_15.tgz
+     dest: /opt
+
+ - name: Intel MPI 
+   unarchive:
+      src: intelmpi.tgz
+      dest: /opt

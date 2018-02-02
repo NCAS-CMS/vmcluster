@@ -1,0 +1,1 @@
+mpiexec -np 2 /vagrant/data/xiohk/xiohk.parexe.24

@@ -1,0 +1,18 @@
+---
+# Install munge
+
+- name: Setup epel
+  yum:
+    name: epel-release
+    state: latest
+
+- name: Install munge
+  yum:
+    name: munge,munge-libs
+    state: latest
+
+- name: Config munge
+  action: copy src=files/munge.key dest=/etc/munge/munge.key owner=munge group=munge mode=0400
+
+- name: Munge service
+  action: service name=munge state=started

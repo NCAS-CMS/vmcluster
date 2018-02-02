@@ -1,0 +1,51 @@
+#!/bin/ksh
+#SBATCH --image=docker:simonwncas/famousdocker:latest
+#SBATCH --nodes=2
+#SBATCH --output=/vagrant/vdata/slurm.out
+export PATH=/opt/intelmpi/bin:$PATH
+
+# QSUB -r xiohk000
+# QSUB -q normal     
+# QSUB -A n02-qesm
+# QSUB -J m 
+# QSUB -eo
+# QSUB -nr
+# QSUB -ro
+# QSUB -lM 500Mw
+# QSUB -l mpp_t=1000
+# QSUB -l mpp_p=4
+
+LHOME=/vagrant/vdata
+
+trap "ja -eSt" 0
+set -a            # Set jobscript UNICOS options
+SETOPT=a          # Choose shell "set" options for  lower level scripts
+TYPE=NRUN
+STEP=4
+# Output file for run following compilation run.
+UMRUN_OUTPUT=$HOME/xiohk000.xiohk.d17216.t104650.leave
+CJOBN=xiohk000
+CRDOERUN=false
+CRPRODRUN=false
+BUILDSECT=false
+SKIP_SRC_EXTRACT=false
+SKIP_TAR_COMPDIR=false
+JOBDIR=$LHOME/umui_runs/xiohk-216104643
+SUBMITID=216104643
+QUEUE=normal
+SUBMITHOST=vaio
+ROVING=false
+RECON_NPROC=1
+UM_NPES=2
+NCPUS=UNSET
+NCORE=
+NCORES_PER_NUMANODE=
+UM_ATM_NPROCX=1
+UM_ATM_NPROCY=2
+UM_OCN_NPROCX=1
+UM_OCN_NPROCY=2
+if test $STEP = 2; then
+  . $LHOME/umui_runs/xiohk-216104643/SCRIPT_compile
+else
+  . $LHOME/umui_runs/xiohk-216104643/SCRIPT
+fi

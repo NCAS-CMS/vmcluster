@@ -1,0 +1,78 @@
+---
+# Install slurm
+
+- group:
+   name: slurm
+   state: present
+
+- user:
+    name: slurm
+    comment: "Slurm"
+    shell: /bin/bash
+    groups: slurm
+
+- name: Install slurm
+  yum: 
+    name: /vagrant/rpms/slurm-16.05.11-1.el6.x86_64.rpm,/vagrant/rpms/slurm-munge-16.05.11-1.el6.x86_64.rpm,/vagrant/rpms/slurm-plugins-16.05.11-1.el6.x86_64.rpm,/vagrant/rpms/slurm-sjobexit-16.05.11-1.el6.x86_64.rpm,/vagrant/rpms/slurm-sjstat-16.05.11-1.el6.x86_64.rpm,/vagrant/rpms/slurm-torque-16.05.11-1.el6.x86_64.rpm,/vagrant/rpms/slurm-perlapi-16.05.11-1.el6.x86_64.rpm
+    state: present
+
+  
+- name: Conf files
+  template: src=slurm.conf.js dest=/etc/slurm/slurm.conf
+#  action: copy src=files/slurm.conf dest=/etc/slurm/slurm.conf
+
+
+- block:
+  - name: Set up slurm compute
+    file:
+      path: /var/spool/slurmd
+      state: directory
+      owner: slurm
+      group: slurm
+      mode: 0755
+
+  - file:
+      path: /var/spool/slurmd.log
+      state: touch
+      owner: slurm
+      group: slurm
+
+  - name: Slurm server service
+    action: service name=slurm state=started enabled=true
+
+
+  when: '"compute-node" in inventory_hostname'
+
+
+- block:
+  - name: Set up slurm master
+    file:
+      path: /var/spool/slurmctld
+      state: directory
+      owner: slurm
+      group: slurm
+      mode: 0755
+      
+  - file:
+       path: /var/spool/slurmctld.log
+       state: touch
+       owner: slurm
+       group: slurm
+
+  - file:
+       path: /var/spool/slurm_jobacct.log
+       state: touch
+       owner: slurm
+       group: slurm
+
+  - file:
+       path: /var/spool/slurm_jobcomp.log
+       state: touch
+       owner: slurm
+       group: slurm
+
+  - name: Slurm master service
+    action: service name=slurm state=started enabled=true
+   
+  when: inventory_hostname  == "master"
+

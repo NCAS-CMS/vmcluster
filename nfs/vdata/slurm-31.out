@@ -1,0 +1,18 @@
+	linux-vdso.so.1 =>  (0x00007ffe637df000)
+	libmpifort.so.12 => /opt/udiImage/mpich-3.2.1/lib/libmpifort.so.12 (0x00007f4ecea17000)
+	libmpi.so.12 => /opt/udiImage/mpich-3.2.1/lib/libmpi.so.12 (0x00007f4ece518000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f4ece20f000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f4ecdff2000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f4ecdc28000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f4ecda12000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f4ecd80e000)
+	libifport.so.5 => not found
+	libimf.so => not found
+	libsvml.so => not found
+	libintlc.so.5 => not found
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f4ecd606000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f4ecec4e000)
+	libifport.so.5 => not found
+	libimf.so => not found
+	libsvml.so => not found
+	libintlc.so.5 => not found

@@ -1,0 +1,19 @@
+# Install docker-io
+- name: Install docker-io
+  yum: 
+    name: docker-io
+    state: latest
+
+- name: Docker service
+  action: service name=docker state=started enabled=true
+
+- group:
+    name: docker
+    state: present
+  
+- name: add user to docker group
+  user: name=vagrant groups=docker append=yes
+
+- name: add user to dockerroot group
+  user: name=vagrant groups=dockerroot append=yes
+

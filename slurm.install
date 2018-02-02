@@ -1,0 +1,22 @@
+
+to build:
+
+sudo yum install epel-release -y
+sudo yum install munge munge-libs munge-devel -y
+
+sudo yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad rpm-build perl-ExtUtils-MakeMaker gcc make -y
+
+Centos6:
+wget https://download.schedmd.com/slurm/slurm-16.05.11.tar.bz2
+rpmbuild -ta slurm-16.05.11.tar.bz2 
+
+Centos7:
+http://www.schedmd.com/download/latest/slurm-17.11.0.tar.bz2
+rpmbuild -ta slurm-17.11.0.tar.bz2 
+
+to install:
+
+sudo yum install epel-release -y
+sudo yum install munge munge-libs -y
+cd /vagrant/nfs
+sudo yum --nogpgcheck localinstall slurm-16.05.11-1.el6.x86_64.rpm slurm-munge-16.05.11-1.el6.x86_64.rpm slurm-plugins-16.05.11-1.el6.x86_64.rpm slurm-sjobexit-16.05.11-1.el6.x86_64.rpm slurm-sjstat-16.05.11-1.el6.x86_64.rpm slurm-torque-16.05.11-1.el6.x86_64.rpm slurm-perlapi-16.05.11-1.el6.x86_64.rpm -y

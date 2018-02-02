@@ -1,0 +1,1 @@
+singularity pull --name /vagrant/vdata/famousdocker.simg docker://simonwncas/famousdocker

@@ -1,0 +1,8 @@
+FLAG=N
+QUEUE=normal      
+TIME=
+CPU=17000 
+MEMORY=
+PRTY=
+JOBNAME=xiohk001
+THISJOB=xiohk000

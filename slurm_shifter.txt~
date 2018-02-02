@@ -1,0 +1,9 @@
+shifterimg pull dmjacobsen/mpitest:latest
+
+salloc --image=dmjacobsen/mpitest:latest -N 2
+srun -n4 --mpi=pmi2 /opt/shifter-16.08.3/bin/shifter whatever
+
+
+to change MPI libraries alter
+siteEnvAppend=LD_LIBRARY_PATH
+in udiRoot.conf

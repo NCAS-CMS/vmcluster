@@ -1,0 +1,99 @@
+ROOT_IP="192.168.50"
+#BOX="ubuntu/xenial64"
+BOX="cedadev/centos6"
+#BOX="centos/7"
+settings = {
+    MA_HOST: ROOT_IP+".110",
+    MA_PORT: "6100",
+    CO_HOST: ROOT_IP+".11",
+    CO_PORT: "510",
+    N_COMP_NODES: 2
+}
+
+N_COMP=settings[:N_COMP_NODES]
+
+Vagrant.configure("2") do |config|
+
+  config.vm.network "private_network", type: "dhcp"
+
+  
+ # #Head node
+ # config.vm.define "master" do |ma|
+ #   ma.vm.box = BOX
+ #   ma.vm.network "private_network", ip: settings[:MA_HOST]
+ #   ma.vm.network :forwarded_port, guest: settings[:MA_PORT], host: settings[:MA_PORT]
+
+
+ #   ma.vm.provision :shell, inline: <<SHELL
+ # set -x
+ # mkdir -p /root/.ssh
+ # cp ~vagrant/.ssh/authorized_keys /root/.ssh
+ # SHELL
+ 
+ # #    mn.vm.provision :ansible do |ans|
+ # #        ans.force_remote_user = false
+ # #    end
+ # end
+
+#All node(s)
+  (0..settings[:N_COMP_NODES]).each do |i|
+    if i ==0 
+      vm_name="master"
+    else
+      vm_name="compute-node-#{i}"
+    end
+    config.vm.define vm_name do |co|
+    co.vm.box = BOX
+
+    # copy the settings and change the port
+    these_settings = settings.clone
+    these_settings[:CO_HOST] = settings[:CO_HOST]+"#{i}"
+#    these_settings[:CO_PORT] = settings[:CO_PORT]+"#{i}"
+
+    co.vm.hostname = vm_name
+    co.vm.network "private_network", ip: these_settings[:CO_HOST], virtualbox__intnet: "clusternet"
+#    co.vm.network :forwarded_port, guest: these_settings[:CO_PORT], host: these_settings[:CO_PORT]
+    
+
+     script = <<-SHELL
+     set -x
+     if [[ ! -e /etc/.provisioned ]]; then
+     mkdir -p /root/.ssh
+     cp ~vagrant/.ssh/authorized_keys /root/.ssh
+
+     rm /etc/hosts
+     echo "ROOT_IP.110 master" >>/etc/hosts
+     for i in {1..N_COMP}; do
+       ip="ROOT_IP.$((110+i))"
+     echo "$ip compute-node-$i node$i" >> /etc/hosts
+     done
+     # we only generate the key on one of the nodes
+      if [[ ! -e /vagrant/id_rsa ]]; then
+        ssh-keygen -t rsa -f /vagrant/id_rsa -N ""
+      fi
+      install -m 600 -o vagrant -g vagrant /vagrant/id_rsa /home/vagrant/.ssh/
+      # the extra 'echo' is needed because Vagrant inserts its own key without #a
+      # newline at the end
+      (echo; cat /vagrant/id_rsa.pub) >> /home/vagrant/.ssh/authorized_keys
+      echo "StrictHostKeyChecking no" >> /home/vagrant/.ssh/config
+      touch /etc/.provisioned
+      fi
+
+     SHELL
+     script.gsub! 'N_COMP', N_COMP.to_s
+     script.gsub! 'ROOT_IP', ROOT_IP.to_s
+     co.vm.provision "shell", inline: script
+     co.vm.synced_folder "./nfs", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc', 'actimeo=1']
+
+     co.vm.provision :ansible do |ans|
+      ans.force_remote_user = false
+      ans.extra_vars = these_settings
+      ans.playbook = "playbook/mpi.yml"
+    end
+
+  end
+end
+
+
+  
+end

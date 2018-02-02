@@ -1,0 +1,6 @@
+---
+# Install mpich2
+- name: Install mpich2
+  yum: 
+    name: mpich2
+    state: latest

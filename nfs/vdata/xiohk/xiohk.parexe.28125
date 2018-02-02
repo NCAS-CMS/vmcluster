@@ -1,0 +1,4 @@
+#!/bin/sh
+ulimit -c unlimited
+ulimit -s unlimited
+/um/FAMOUS/bin/env2 -f /home/simon/work/vmcluster/nfs/vdata/xiohk/environ /um/exec/famous.MOSESII.shared.mpich.exe "$@"

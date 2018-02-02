@@ -1,0 +1,12 @@
+Failed to switch to working dir: /vagrant, staying in /
+Failed to switch to working dir: /vagrant, staying in /
+Failed to switch to working dir: /vagrant, staying in /
+Failed to switch to working dir: /vagrant, staying in /
+[0] DAPL startup: RLIMIT_MEMLOCK too small
+[1] DAPL startup: RLIMIT_MEMLOCK too small
+[2] DAPL startup: RLIMIT_MEMLOCK too small
+[3] DAPL startup: RLIMIT_MEMLOCK too small
+hello from 0 of 4 on compute-node-1
+hello from 1 of 4 on compute-node-1
+hello from 2 of 4 on compute-node-2
+hello from 3 of 4 on compute-node-2

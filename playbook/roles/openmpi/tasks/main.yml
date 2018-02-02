@@ -1,0 +1,6 @@
+---
+# Install openmpi
+- name: Install openmpi
+  unarchive:
+     src: openmpi-3.0.0.bin.tgz
+     dest: /opt

@@ -1,0 +1,5 @@
+Bootstrap: docker
+From: simonwncas/famousdocker
+
+%setup
+  mkdir -p /vagrant/

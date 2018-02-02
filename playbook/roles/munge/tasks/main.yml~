@@ -1,0 +1,6 @@
+#Install munge
+- name: Install munge
+  yum:
+    name: munge
+    state: latest
+    

@@ -1,0 +1,31 @@
+#Setup (not in playbook as yet)
+export PATH=$PATH:/opt/shifter-16.08.3/bin
+export PYTHONPATH=/opt/shifter-16.08.3/lib64/python2.6/site-packages
+#These not root
+export PYTHONPATH=/opt/shifter-16.08.3/lib64/python2.6/site-packages
+/opt/shifter-16.08.3/libexec/shifter/imagegwapi.py > /var/log/imagegwapi.log &
+export CLUSTERNAME=mycluster
+celery worker -A shifter_imagegw.imageworker -Q $CLUSTERNAME -f /var/log/imagegw_worker_$CLUSTERNAME.log &
+
+
+
+/opt/shifter-16.08.3/bin/shifterimg pull dmjacobsen/mpitest:latest
+
+salloc --image=dmjacobsen/mpitest:latest -N 2
+srun -n4 --mpi=pmi2 /opt/shifter-16.08.3/bin/shifter /app/hello
+
+
+to change MPI libraries alter
+siteEnvAppend=LD_LIBRARY_PATH
+in udiRoot.conf
+
+Need to restart shifter image control to change udiRoot config
+
+Script version:
+
+#!/bin/bash
+#SBATCH --image=dmjacobsen/mpitest:latest
+#SBATCH -N 2
+#SBATCH -n 4
+#SBTACH -o /vagrant/test.out
+srun --mpi=pmi2 /opt/shifter-16.08.3/bin/shifter /app/hello

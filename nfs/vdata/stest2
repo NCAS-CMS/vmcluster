@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --ntasks=4
+#SBATCH --image=docker:simonwncas/famousdocker:latest
+export PATH=/opt/intelmpi/bin:$PATH
+/opt/intelmpi/bin/mpirun -bootstrap slurm -n 2 shifter /vagrant/vdata/xiohk/xiohk.parexe
+#shifter ldd /um/exec/famous.MOSESII.shared.mpich.exe
+#export UM_ATM_NPROCX=1
+#export UM_ATM_NPROCY=2
+#export UM_OCN_NPROCX=1
+#export UM_OCN_NPROCY=2
+#export UM_NPES=2
+#export PAREXE=ppp
+#srun -N 1 -n 2 shifter /um/exec/famous.MOSESII.shared.mpich.exe

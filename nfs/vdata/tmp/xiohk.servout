@@ -1,0 +1,20 @@
+qsserver: Starting...
+Updating newpphist file...
+End of data, send remaining trigger files
+
+Last file to be transferred for these data streams:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Dump data stream only (DMP) :  none
+Mean PP data stream only (MPP) :  none
+PP data stream only (PP) :  none
+Boundary data stream only (BF) :  none
+Mixed data stream (MIX) :  none
+Dump and boundary data stream (DB) :  none
+Mean PP and PP data stream (PMP) :  none
+
+Updating newpphist file...
+Updated history file...
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Server process:... Ending

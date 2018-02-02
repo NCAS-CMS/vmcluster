@@ -1,0 +1,11 @@
+                     1  Processors initialised.
+ I am PE                      0
+ Start of UM Job : 13:41:12 on 04/12/2017
+ Setting UM_NAM_MAX_SECONDS to                    300
+ Number of levels for convective clouds is                      1
+ MYPE,NJTBF                     0                     8                     9
+                    60                    59
+ decomp_standard_ocean                     2
+ nohalo_imt                    98
+ nohalo_jmt                    19
+  global_land_field set to                    836

@@ -1,0 +1,241 @@
+ &RECON
+ SCALE=18,
+ SUBMODEL_IDENT=1,
+ DUMP_PACK=2,
+ LAND_POINTS_OUT=836,
+ NTILES=1,
+ ANVIL_FACTOR=0.0, 
+ TOWER_FACTOR=0.0, 
+ RIMWIDTHA=1,
+ P_LEVELS_OUT= 11, Q_LEVELS_OUT= 11, 
+ P_ROWS_OUT= 37,
+ ROW_LENGTH_OUT= 48,
+ TR_LEVELS_OUT= 0 ,
+ TR_VARS_OUT= 0 ,
+ ST_LEVELS_OUT=4,
+ SM_LEVELS_OUT=4,
+ BL_LEVELS_OUT= 3, OZONE_LEVELS_OUT=11, 
+ LEN_FIXHD_OUT=256, LEN_INTHD_OUT=29, LEN_REALHD_OUT=38, LEN2_LEVDEPC_OUT=6,
+ LEN2_ROWDEPC_OUT=3, LEN2_COLDEPC_OUT=0, LEN2_FLDDEPC_OUT=0, 
+ LEN_EXTCNST_OUT=0, LEN_DUMPHIST_OUT=0, MAX_VARIABLES_OUT= -32768,
+ GRIB= .FALSE.,  
+ UARS= .FALSE., 
+ RESET= .FALSE., 
+ PERTURBATION= 0.0, 
+ TRANS= .FALSE.,
+ LSPIRAL_S= .FALSE., 
+ LCAL360=.TRUE.,  
+ LOZONE_ZONAL=.TRUE., 
+ LAMIPII=.FALSE.,
+ &END
+
+ &NSUBMODL
+ N_INTERNAL_MODEL=2,
+ INTERNAL_MODEL_LIST= 1 , 2 ,
+ SUBMODEL_FOR_IM= 1 , 2 ,
+ &END
+
+ &USTSNUM 
+ N_USTASH= 2 , NRECS_USTASH= 73 ,
+ USTSFILS= "PRESM_A","PRESM_O" &END
+
+ &VERTICAL
+ METH_LEV_CALC= 5,
+ ETAH= 1.000000000000,0.975000000000,0.900000000000,
+ 0.790000000000,0.650000000000,0.510000000000,0.370000000000,0.270000000000,
+ 0.195000000000,0.125000000000,0.060000000000,0.005000000000,  
+ MIN_PRS_HLEV= 11, MAX_SIG_HLEV= 4,
+ &END 
+
+ &HORIZONT
+ GLOBAL= .TRUE., 
+ RIM_WIDTH_NORTH_TOPOG=0,
+ RIM_WIDTH_SOUTH_TOPOG=0,
+ RIM_WIDTH_WEST_TOPOG=0,
+ RIM_WIDTH_EAST_TOPOG=0,
+ H_INT_TYPE= .FALSE., 
+ &END 
+
+ &HEADERS 
+ FIXHD(12)=405,
+ &END 
+
+ &STSHCOMP
+ RUN_TARGET_END= 0 , 1 , 0 , 0 , 0 , 0 ,
+ OCAAA=1,
+ INDEP_SR='1A','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','0A','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','1A','  ','1A','  ','  ','  ','  ','  ','  ','  ','1A','  ','1A','  ',
+ '1A','  ','  ','1A','  ','  ','2A','2A','1A','1A','1A','2A','1A','3A','  ',
+ '0A',
+ SWBND=6, LWBND=8,
+ SWINC=8, LWINC=8,
+ OROGR='Y',
+ SWMCR='Y',
+ ATMOS_SR='  ','3A','3A','7A','2E','3C','3A','0A','7A',
+ '1A','1A','1A','1C','1A','1B','1A','1A','0A','0A','2A','  ','1A','1A','1A',
+ '1A','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','1A','1A','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','0A',
+ ZonAvOzone=.TRUE.,
+ StLevGWdrag=3, BotVDiffLev=8, TopVDiffLev=14,
+ OCALB=1, 
+ FLOOR='N', 
+ TOTAE='N', TOTEM='N',
+ TCA=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ 0,0,0,0,0,
+ SSTAnom='N',
+ OCAAO=1,
+ EWSPACEO=3.750000, NSSPACEO=2.500000,
+ FRSTLATO= -90.00000, FRSTLONO=   0.00000,
+ CCEW='Y',
+ NLEVSO=20,
+ NCOLSO=98,
+ NROWSO=73,
+ UPD175='',
+ OIDYN=2,
+ OBAS=4,
+ OBS=2,
+ OICE=1,
+ IVDF=1,
+ IDO='Y',
+ OCARB='Y',
+ MLMO='Y',
+ PSA=1,
+ OSFC='Y',
+ OCEAN_SR='  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ','  ',
+ '  ','  ','  ','  ','  ','  ','1A','1A','1A','  ','  ','0A','  ','  ','  ',
+ '  ','  ','1A','1A','1A','1A',
+ OCBOHaney=0,
+ LOSSM='N',
+ OASLEV=0,
+ OAFLD='N','N','N','N',
+ OASFLDID=1,3,4,5,
+ TCO=1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+ &END
+ &NLSTCATM
+ LTLEADS=.TRUE.,
+ L_SSICE_ALBEDO=.FALSE.,
+ L_VINT_TP=.FALSE.,
+ L_RHCPT=.FALSE., 
+ L_CLD_AREA=.FALSE.,
+ L_CO2_INTERACTIVE=.TRUE.,
+ L_CO2_EMITS= .FALSE.,
+ L_VEG_FRACS=.TRUE.,
+ L_TRIFFID=.TRUE.,
+ L_PHENOL=.TRUE.,
+ L_TRIF_EQ=.FALSE.,
+ L_NRUN_MID_TRIF=.FALSE.,
+ PHENOL_PERIOD=10,
+ TRIFFID_PERIOD=10,
+ L_3D_CCA=.FALSE.,
+ L_CLOUD_DEEP=.FALSE.,
+ L_CCW=.FALSE.,
+ L_PHASE_LIM=.FALSE.,
+ L_LSPICE=.FALSE.,
+ L_LSPICE_BDY=.FALSE.,
+ L_BL_LSPICE=.FALSE.,
+ L_SNOW_ALBEDO=.FALSE.,
+ H_SWBANDS= 6,
+ H_LWBANDS= 8,
+ A_SWEEPS_DYN= 1,
+ A_ADJSTEPS= 3,
+ A_SW_RADSTEP=3, 
+ A_SW_SEGMENTS=4, 
+ A_LW_RADSTEP=3,
+ A_LW_SEGMENTS=4,   
+ A_CONV_STEP=1,
+ A_CONVECT_SEGMENTS=3, 
+ L_RMBL=.FALSE.,
+ L_MIXLEN=.FALSE.,
+ A_ENERGYSTEPS=24,   
+ A_NSET_FILTER=1, 
+ A_ASSIM_MODE='NONE',
+ LEXPAND_OZONE=.TRUE.,
+ L_NEG_THETA=.TRUE.,
+ L_NEG_PSTAR=.TRUE.,
+ L_NEG_QT=.TRUE.,
+ L_NEG_TSTAR=.FALSE.,
+ L_FIELD_FLT=.FALSE., 
+ L_Z0_OROG=.TRUE.,
+ L_HALF_TIMESTEP_DYN=.FALSE.,
+ L_SUPERBEE=.TRUE.,
+ L_TRACER_THETAL_QT=.FALSE.,
+ L_HALF_TIMESTEP_DIV=.FALSE.,
+ L_QT_POS_LOCAL=.TRUE.,
+ LLINTS=.TRUE.,
+ LWHITBROM=.TRUE.,
+ LGWLINP=.FALSE.,
+ LEMCORR=.TRUE.,
+ L_MURK=.FALSE.,
+ L_BL_TRACER_MIX=.FALSE.,
+ L_MOM=.TRUE.,
+ L_CAPE=.FALSE.,
+ L_SDXS=.FALSE.,
+ L_XSCOMP=.FALSE.,
+ L_MURK_ADVECT=.FALSE.,
+ L_MURK_SOURCE=.FALSE.,
+ L_MURK_BDRY=.FALSE.,
+ LMICROPHY=.TRUE.,
+ L_SULPC_SO2=.FALSE.
+ L_SOOT=.FALSE.
+ L_SO2_SURFEM=.FALSE.,
+ L_SO2_HILEM=.FALSE.,
+ L_SO2_NATEM=.FALSE.,
+ L_SULPC_DMS=.FALSE.,
+ L_DMS_EM=.FALSE.,
+ L_USE_SULPC_DIRECT=.FALSE.,
+ L_SULPC_OZONE=.FALSE.,
+ L_SULPC_NH3=.FALSE.,
+ L_NH3_EM=.FALSE.,
+ L_USE_SULPC_INDIRECT_SW=.FALSE.,
+ L_USE_SULPC_INDIRECT_LW=.FALSE.,
+ L_SOOT_SUREM=.FALSE.,
+ L_SOOT_HILEM=.FALSE.,
+ L_USE_SOOT_DIRECT=.FALSE.,
+ L_CLIMAT_AEROSOL=.TRUE.,
+ LSINGLE_HYDROL=.FALSE.,
+ LMOSES=.TRUE.,
+ L_H2_SULPH=.FALSE.,
+ &END
+ &NLSTCSLB &END
+
+ ### Ancillary fields ###
+ &ITEMS ITEM=33, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=34, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=35, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=36, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=37, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=19, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=17, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=18, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=219, DOMAIN=1, SOURCE=2, &END
+ ### Famous Specific Ancillary fields ###
+ &ITEMS ITEM=31, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=24, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=32, DOMAIN=1, SOURCE=2, &END
+ &ITEMS ITEM=406, DOMAIN=1,SOURCE=8, &END
+ &ITEMS ITEM=407, DOMAIN=1,SOURCE=8, &END
+ &ITEMS ITEM=408, DOMAIN=1,SOURCE=8, &END
+ &ITEMS ITEM=409, DOMAIN=1,SOURCE=8, &END
+ &ITEMS ITEM=410, DOMAIN=1,SOURCE=8, &END
+ &ITEMS ITEM=412, DOMAIN=1,SOURCE=8, &END
+ ### Co2 Field for interactive carbon cycle ###"
+ &ITEMS ITEM=252, DOMAIN=1, SOURCE=6, USER_PROG_RCONST=4.40000e-04 &END
+ ### Atmos user-prognostic fields ###
+ &ITEMS ITEM=95, DOMAIN=1, SOURCE=3 &END
+ &ITEMS ITEM=236, DOMAIN=1, SOURCE=3 &END
+ &ITEMS ITEM=250, DOMAIN=1, SOURCE=3 &END
+ &ITEMS ITEM=251, DOMAIN=1, SOURCE=3 &END
+ &ITEMS ITEM=252, DOMAIN=1, SOURCE=6, USER_PROG_RCONST=4.400000e-04 &END
+ ### Energy correction prognostic ### 
+ &ITEMS ITEM=222, DOMAIN=1, SOURCE=3 &END 
+ ### Transplant data ####
+
+ ### END OF FILE ###

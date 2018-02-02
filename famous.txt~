@@ -1,0 +1,23 @@
+After:
+docker push simonwncas/famousdocker
+
+On VM:
+Docker:
+docker pull simonwncas/famousdocker
+cd
+mkdir umui_runs
+cd umui_runs
+scp -r simon@134.225.102.75:~/umui_runs/xiohk-216104643 .
+edit SCRIPT:
+ export DATA_DIR=/vagrant/data
+
+edit qsubmit to run on 2 PEs
+
+
+Shifter:
+Start shifter daemon (see slurm_shifter.txt)
+shifterimg pull simonwncas/famousdocker
+cd /vagrant/vdata/umui_runs/xiohk-216104643
+sbatch qsubmit.slurm
+
+

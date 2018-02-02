@@ -1,0 +1,109 @@
+#!/bin/sh
+#
+# Copyright (C) 2003-2016 Intel Corporation.  All Rights Reserved.
+# 
+# The source code contained or described herein and all documents
+# related to the source code ("Material") are owned by Intel Corporation
+# or its suppliers or licensors.  Title to the Material remains with
+# Intel Corporation or its suppliers and licensors.  The Material is
+# protected by worldwide copyright and trade secret laws and treaty
+# provisions.  No part of the Material may be used, copied, reproduced,
+# modified, published, uploaded, posted, transmitted, distributed, or
+# disclosed in any way without Intel's prior express written permission.
+# 
+# No license under any patent, copyright, trade secret or other
+# intellectual property right is granted to or conferred upon you by
+# disclosure or delivery of the Materials, either expressly, by
+# implication, inducement, estoppel or otherwise.  Any license under
+# such intellectual property rights must be express and approved by
+# Intel in writing.
+#
+
+is_enabled()
+{
+    local var="$1"
+    if [ "${var}" = "enable" ] || [ "${var}" = "yes" ] || [ "${var}" = "1" ] || [ "${var}" = "on" ] || [ "${var}" = "true" ]; then
+        echo true
+    else
+        echo false
+    fi
+}
+
+is_enabled_cmd()
+{
+    local var="$1"
+    echo "$var" | grep  '^-.*$'>/dev/null 2>&1
+    exit_code=$?
+    if [ "$(is_enabled $var)" = true ] || [ $exit_code -eq 0 ] || [ "$var" = "" ]; then
+        echo true
+    else
+        echo false
+    fi
+}
+
+# Environment
+
+fast_on=$(is_enabled "${I_MPI_TUNE_FAST}")
+rank_placement_on=$(is_enabled "${I_MPI_TUNE_RANK_PLACEMENT}")
+
+# Command line
+params=""
+skip=false
+while [ $# -ne 0 ]; do
+
+    param="$1"
+
+    if [ "${param}" = "\"" ]; then
+        if [ "$skip" = true ]; then
+            skip=false
+        else
+            skip=true
+        fi
+    else
+        echo "$param" | grep '^\".*$'>/dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            skip=true
+        fi
+        echo "$param" | grep '^-.*$'>/dev/null 2>&1
+        if [ $? -eq 0 ] && [ "${param}" != "" ]; then
+            skip=false
+        fi
+    fi
+
+    ret_val=""
+    if [ "$skip" = false ]; then
+        val="$2"
+        echo "$val" | grep -v '^-.*$'>/dev/null 2>&1
+        exit_code=$?
+        if [ "$param" = "--rank-placement" ] || [ "$param" = "-rp" ]; then
+            ret_val=$(is_enabled_cmd $val)
+            if [ "$ret_val" = true ] && [ $exit_code -eq  0 ] && [ "$val" != "" ]; then
+                shift
+            fi
+            rank_placement_on=$ret_val
+        elif [ "$1" = "--fast" ] || [ "$1" = "-f" ]; then
+            ret_val=$(is_enabled_cmd $val)
+            if [ "$ret_val" = true ] && [ $exit_code -eq  0 ] && [ "$val" != "" ]; then
+                shift
+            fi
+            fast_on="$ret_val"
+        fi
+    fi
+
+    if [ "$ret_val" = "" ]; then
+        params="${params} ${param}"
+    fi
+    shift
+done
+
+bin=
+if [ "$fast_on" = true ]; then
+    bin=$I_MPI_ROOT/intel64/bin/tune/mpitune_app
+elif [ "$rank_placement_on" = true ]; then
+    bin=$I_MPI_ROOT/intel64/bin/tune/mpitune_rank_placement
+else
+    bin=$I_MPI_ROOT/intel64/bin/tune/mpitune
+fi
+
+$bin $params
+

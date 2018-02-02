@@ -1,0 +1,5 @@
+#!/bin/bash
+cd $HOME
+./make-hostfile.sh
+cd /um/xiohk
+mpiexec -np 8 -f ~/hostfile ./run_um

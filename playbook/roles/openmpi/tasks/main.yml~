@@ -1,0 +1,6 @@
+---
+# Install mpich2
+- name: Install mpich2
+  unarchive:
+     src: mpich-3.2.1.bin.tgz
+     dest: /opt

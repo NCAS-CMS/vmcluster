@@ -1,0 +1,4 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH --image=docker:simonwncas/famousdocker:latest
+srun -N 2 -n 2 shifter /vagrant/vdata/xiohk/xiohk.parexe

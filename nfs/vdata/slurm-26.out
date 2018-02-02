@@ -1,0 +1,73 @@
+ Warning: Environment variable UM_SECTOR_SIZE has not been set.
+ Setting um_sector_size to 2048
+ Warning: Environment variable UM_ATM_NPROCX has not been set.
+ Setting nproc_x to 1
+ Warning: Environment variable UM_ATM_NPROCY has not been set.
+ Setting nproc_y to 1
+ Warning: Environment variable UM_OCN_NPROCX has not been set.
+ Setting nproc_x to 1
+ Warning: Environment variable UM_OCN_NPROCY has not been set.
+ Setting nproc_y to 1
+ Error : Environment variable UM_NPES has not been set.
+ Exiting
+ Model aborted; timings not available
+ Warning: Environment variable UM_SECTOR_SIZE has not been set.
+ Setting um_sector_size to 2048
+ Warning: Environment variable UM_ATM_NPROCX has not been set.
+ Setting nproc_x to 1
+ Warning: Environment variable UM_ATM_NPROCY has not been set.
+ Setting nproc_y to 1
+ Warning: Environment variable UM_OCN_NPROCX has not been set.
+ Setting nproc_x to 1
+ Warning: Environment variable UM_OCN_NPROCY has not been set.
+ Setting nproc_y to 1
+ Error : Environment variable UM_NPES has not been set.
+ Exiting
+ Model aborted; timings not available
+ *****************************************
+ *****************************************
+ Model completed with the following :
+     Error Code :                     38
+     Message    : 
+ *****************************************
+ *****************************************
+forrtl: error (76): Abort trap signal
+Image              PC                Routine            Line        Source             
+famous.MOSESII.sh  00000000009CC4B1  tbk_trace_stack_i     Unknown  Unknown
+famous.MOSESII.sh  00000000009CA5EB  tbk_string_stack_     Unknown  Unknown
+famous.MOSESII.sh  00000000009770F4  Unknown               Unknown  Unknown
+famous.MOSESII.sh  0000000000976F06  tbk_stack_trace       Unknown  Unknown
+famous.MOSESII.sh  0000000000910EB9  for__issue_diagno     Unknown  Unknown
+famous.MOSESII.sh  0000000000917FB4  for__signal_handl     Unknown  Unknown
+libpthread-2.23.s  00007F2954A8C390  Unknown               Unknown  Unknown
+libc-2.23.so       00007F29546E6428  gsignal               Unknown  Unknown
+libc-2.23.so       00007F29546E802A  abort                 Unknown  Unknown
+famous.MOSESII.sh  0000000000412C4A  Unknown               Unknown  Unknown
+famous.MOSESII.sh  000000000040BF2F  Unknown               Unknown  Unknown
+famous.MOSESII.sh  000000000040AC1E  Unknown               Unknown  Unknown
+libc-2.23.so       00007F29546D1830  __libc_start_main     Unknown  Unknown
+famous.MOSESII.sh  000000000040AB29  Unknown               Unknown  Unknown
+ *****************************************
+ *****************************************
+ Model completed with the following :
+     Error Code :                   1023
+     Message    : 
+ *****************************************
+ *****************************************
+forrtl: error (76): Abort trap signal
+Image              PC                Routine            Line        Source             
+famous.MOSESII.sh  00000000009CC4B1  tbk_trace_stack_i     Unknown  Unknown
+famous.MOSESII.sh  00000000009CA5EB  tbk_string_stack_     Unknown  Unknown
+famous.MOSESII.sh  00000000009770F4  Unknown               Unknown  Unknown
+famous.MOSESII.sh  0000000000976F06  tbk_stack_trace       Unknown  Unknown
+famous.MOSESII.sh  0000000000910EB9  for__issue_diagno     Unknown  Unknown
+famous.MOSESII.sh  0000000000917FB4  for__signal_handl     Unknown  Unknown
+libpthread-2.23.s  00007F31DEAF7390  Unknown               Unknown  Unknown
+libc-2.23.so       00007F31DE751428  gsignal               Unknown  Unknown
+libc-2.23.so       00007F31DE75302A  abort                 Unknown  Unknown
+famous.MOSESII.sh  0000000000412C4A  Unknown               Unknown  Unknown
+famous.MOSESII.sh  000000000040BF2F  Unknown               Unknown  Unknown
+famous.MOSESII.sh  000000000040AC1E  Unknown               Unknown  Unknown
+libc-2.23.so       00007F31DE73C830  __libc_start_main     Unknown  Unknown
+famous.MOSESII.sh  000000000040AB29  Unknown               Unknown  Unknown
+srun: error: compute-node-1: tasks 0-1: Aborted (core dumped)

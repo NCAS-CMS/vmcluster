@@ -1,0 +1,128 @@
+---
+# Install shifter
+- name: Install shifter
+  unarchive:
+     src: files/shifter-16.08.3.built.tgz
+     dest: /opt
+
+- name: udiRoot.conf
+  action: copy src=files/udiRoot.conf dest=/opt/shifter-16.08.3/etc/udiRoot.conf
+
+- name: imagemanager.json
+  action: copy src=files/imagemanager.json dest=/opt/shifter-16.08.3/etc/imagemanager.json
+
+- name: shifter passwd
+  action: copy src=files/passwd  dest=/opt/shifter-16.08.3/etc/shifter_etc_files/passwd
+#  command: /usr/bin/getent passwd > /opt/shifter-16.08.3/etc/shifter_etc_files/passwd
+  
+- name: shifter group
+  action: copy src=files/group  dest=/opt/shifter-16.08.3/etc/shifter_etc_files/group
+#  command: /usr/bin/getent group > /opt/shifter-16.08.3/etc/shifter_etc_files/group
+  
+- modprobe:
+    name: squashfs
+    state: present
+
+- name: Install mpich for shifer
+  unarchive:
+     src: ../mpich/files/mpich-3.2.1.bin.tgz
+     dest: /opt/shifter-16.08.3/libexec/shifter/opt/udiImage
+  
+- name: Install intelmpi for shifer
+  unarchive:
+     src: ../intel/files/intelmpi.tgz
+     dest: /opt/shifter-16.08.3/libexec/shifter/opt/udiImage
+  
+- block:
+    
+  - name: set up shifter server
+    yum:
+      name: python,python-pip,munge,json-c,squashfs-tools,redis
+
+  - name: set up mongodb repo
+    action: copy src=files/mongodb.repo dest=/etc/yum.repos.d/mongodb.repo
+    
+  - yum:
+      name: mongo-10gen,mongo-10gen-server
+
+  - pip:
+      name: celery==3.1.23,pymongo,flask,redis
+    
+  - name: Mongod service
+    action: service name=mongod state=started enabled=true
+
+  - name: Redis service
+    action: service name=redis state=started enabled=true
+
+  - file:
+      path: /images
+      state: directory
+      mode: 0755
+    
+  - file:
+      path: /images/cache
+      state: directory
+      mode: 0777
+    
+  - file:
+      path: /images/expand
+      state: directory
+      mode: 0777
+
+  - name: plugstack.conf
+    action: copy src=files/plugstack.conf dest=/etc/slurm/plugstack.conf
+
+    
+  when: inventory_hostname  == "master"
+
+    
+
+
+
+#As user
+#export PATH=$PATH:/opt/shifter-16.08.3/bin
+# export PYTHONPATH=/opt/shifter-16.08.3/lib64/python2.6/site-packages
+#These not root
+# /opt/shifter-16.08.3/libexec/shifter/imagegwapi.py > /var/log/imagegwapi.log &
+# export CLUSTERNAME=mycluster
+#celery worker -A shifter_imagegw.imageworker -Q $CLUSTERNAME -f /var/log/imagegw_worker_$CLUSTERNAME.log &
+
+
+#Compute:
+##cd /opt;tar zxvf /vagrant/rpms/shifter-16.08.3.built.tgz
+##cp files/udiRoot.conf  /opt/shifter-16.08.3/etc/udiRoot.conf
+##cp files/imagemanager.json /opt/shifter-16.08.3/etc/imagemanager.json
+##getent passwd > /opt/shifter-16.08.3/etc/shifter_etc_files/passwd
+##getent group > /opt/shifter-16.08.3/etc/shifter_etc_files/group
+##export PATH=$PATH:/opt/shifter-16.08.3/bin in .bashrc
+##modprobe squashfs
+##mkdir /opt/shifter-16.08.3/libexec/shifter/opt/udiImage/mpich-3.2.1
+##cp -a /opt/mpich-3.2.1/lib /opt/shifter-16.08.3/libexec/shifter/opt/udiImage/mpich-3.2.1
+##cp -r /opt/intel/composer_xe_2015.2.164/compiler/lib/intel64/* /opt/shifter-16.08.3/libexec/shifter/opt/udiImage/mpich-3.2.1/lib
+##cp -a /opt/intelmpi /opt/shifter-16.08.3/libexec/shifter/opt/udiImage
+
+##yum install python python-pip munge json-c squashfs-tools
+##yum install redis
+##cat >  /etc/yum.repos.d/mongodb.repo
+##[mongodb]
+##name=MongoDB Repository
+##baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+##gpgcheck=0
+##enabled=1
+##yum install mongo-10gen mongo-10gen-server
+##pip install celery==3.1.23 pymongo flask redis
+##cd /opt;tar zxvf /vagrant/rpms/shifter-16.08.3.built.tgz
+##cp files/udiRoot.conf  /opt/shifter-16.08.3/etc/udiRoot.conf
+##cp files/imagemanager.json /opt/shifter-16.08.3/etc/imagemanager.json
+##/etc/init.d/mongod start
+##/etc/init.d/redis start
+##mkdir -p /images/cache/ /images/expand/
+##chmod -R 777 /images
+##getent passwd > /opt/shifter-16.08.3/etc/shifter_etc_files/passwd
+##getent group > /opt/shifter-16.08.3/etc/shifter_etc_files/group
+##modprobe squashfs
+##mkdir /opt/shifter-16.08.3/libexec/shifter/opt/udiImage/mpich-3.2.1
+##cp -a /opt/mpich-3.2.1/lib /opt/shifter-16.08.3/libexec/shifter/opt/udiImage/mpich-3.2.1
+##cp -r /opt/intel/composer_xe_2015.2.164/compiler/lib/intel64/* /opt/shifter-16.08.3/libexec/shifter/opt/udiImage/mpich-3.2.1/lib
+##cp -a /opt/intelmpi /opt/shifter-16.08.3/libexec/shifter/opt/udiImage
+##cp files/plugstack.conf /etc/slurm/

@@ -1,0 +1,32 @@
+ 
+ =====================================================
+ GCOM Version 3.8
+ MPP
+ Using precision : 64bit INTEGERs and 64bit REALs
+ Built at Mon Dec 18 16:07:49 GMT 2017
+ =====================================================
+ 
+ 
+ =====================================================
+ GCOM Version 3.8
+ MPP
+ Using precision : 64bit INTEGERs and 64bit REALs
+ Built at Mon Dec 18 16:07:49 GMT 2017
+ =====================================================
+ 
+OPEN:  File /vagrant/vdata/xiohk/xiohk.astart to be Opened on Unit 21 Exists
+Fatal error in MPI_Bsend: Invalid rank, error stack:
+srun: error: compute-node-1: task 0: Exited with exit code 6
+MPI_Bsend(214): MPI_Bsend(buf=0x1de0fa0, count=384, MPI_BYTE, dest=1, tag=2002, MPI_COMM_WORLD) failed
+MPI_Bsend(148): Invalid rank has value 1 but must be nonnegative and less than 1
+[unset]: write_line error; fd=-1 buf=:cmd=abort exitcode=470369286
+:
+system msg for write_line failure : Bad file descriptor
+OPEN:  File /vagrant/vdata/xiohk/xiohk.astart to be Opened on Unit 21 Exists
+Fatal error in MPI_Bsend: Invalid rank, error stack:
+srun: error: compute-node-2: task 1: Exited with exit code 6
+MPI_Bsend(214): MPI_Bsend(buf=0x1de0fa0, count=384, MPI_BYTE, dest=1, tag=2002, MPI_COMM_WORLD) failed
+MPI_Bsend(148): Invalid rank has value 1 but must be nonnegative and less than 1
+[unset]: write_line error; fd=-1 buf=:cmd=abort exitcode=470369286
+:
+system msg for write_line failure : Bad file descriptor
